@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
+import logo from '../assets/img/logo.png';
+import './Login.css'
 
 
 class Login extends Component {
+  responseGoogle = (response) => {
+    console.log(response);
+  }
+
+  responseFacebook = (response) => {
+    console.log(response);
+  }
+
   render() {
     return (
       <div className='login-form'>
@@ -16,7 +28,7 @@ class Login extends Component {
         <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>
             <Header as='h2' color='teal' textAlign='center'>
-              <Image src='/logo.png' /> Log-in to your account
+              <Image src={logo} /> Inicia sesión con tu cuenta
           </Header>
             <Form size='large'>
               <Segment stacked>
@@ -28,9 +40,37 @@ class Login extends Component {
                   placeholder='Contraseña'
                   type='password'
                 />
-                <Button color='teal' fluid size='large'>
-                  Login
-              </Button>
+                <Grid columns='3' padded>
+                  <Grid.Column className="Without-padding">
+                    <Button color='teal' fluid size='large'>
+                      Login
+                    </Button>
+                  </Grid.Column>
+
+                  <Grid.Column className="Without-padding">
+                    <GoogleLogin
+                      clientId={process.env.REACT_APP_GOOGLE_ID}
+                      buttonText="Login"
+                      onSuccess={this.responseGoogle}
+                      onFailure={this.responseGoogle}
+                      className="google"
+                    />
+                  </Grid.Column>
+                  <Grid.Column className="Without-padding">
+                    <FacebookLogin
+                      appId={process.env.REACT_APP_FACEBOOK_ID}
+                      icon="fa-facebook"
+                      textButton="Login"
+                      autoLoad={true}
+                      fields="name,email,picture"
+                      onClick={this.responseFacebook}
+                      callback={this.responseFacebook}
+                      size='small'
+                      // cssClass="my-facebook-button-class"
+                      buttonStyle={{ borderRadius: 5, width: 123, height:42, paddingRight: 7 , backgroundColor:'#4C69BA', color:'white' }}
+                    />
+                  </Grid.Column>
+                </Grid>
               </Segment>
             </Form>
             <Message>

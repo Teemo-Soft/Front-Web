@@ -1,0 +1,17 @@
+.Button-facebook{
+    background-color: 'red' !important;
+    color: 'red'
+}
+.google{
+    border-radius: 7 ;
+    width: 123px;
+    text-align: center;
+    height: 41px;
+    border-radius: 10
+    
+}
+
+.Without-padding{
+    padding: 0 !important;
+    text-transform: lowercase !important 
+}
