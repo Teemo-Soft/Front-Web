@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import Login from './views/Login'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Login from './Login'
+import Home from './Home'
+import Sidebar from './components/sidebar'
+
+
 
 class App extends Component {
   render() {
     return (
-      <Login></Login>
+      <Router>
+        <div>
+          <Route exact path="/" component={Login} />
+          <Route exact path="/home" component={Sidebar} />
+        </div>
+      </Router>
     );
   }
 }
