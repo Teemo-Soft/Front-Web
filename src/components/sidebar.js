@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
 import { Button, Icon, Grid, Segment, Sidebar, Dropdown, Menu } from 'semantic-ui-react'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import routes from '../routes'
 
 
 
 class SidebarVisible extends Component {
 
-  state = {}
+  state = {
+    visible: false
+  }
 
 
   handleShowClick = () => this.setState({ visible: true })
   handleSidebarHide = () => this.setState({ visible: false })
+  goTo = route => () => {
+    console.log(route)
+    const { history } = this.props;
+    history.replace(route)
+  }
+
 
   render() {
-    const { visible } = this.state
-
+    const { visible } = this.state;
     return (
       <Router>
         <Grid columns={1}>
@@ -36,18 +43,13 @@ class SidebarVisible extends Component {
                   width='thin'
                   height='100vh'
                 >
-                  <Link to="/home">
-                    <Menu.Item as='a'>
-                      <Icon name='home' />
-                      Home
-                  </Menu.Item>
-                  </Link>
-                  <Link to="/ejemplo">
-                    <Menu.Item as='a'>
-                      <Icon name='gamepad' />
-                      ejemplo
-                  </Menu.Item>
-                  </Link>
+                  {/* creacion de link */}
+                  {routes.map((route, index) => (
+                    <Menu.Item onClick={this.goTo(route.path)} key={index}>
+                      <Icon name={route.icon} />
+                      {route.name}
+                    </Menu.Item>
+                  ))}
                 </Sidebar>
 
                 <Sidebar.Pusher>
@@ -73,14 +75,14 @@ class SidebarVisible extends Component {
                       </Menu.Menu>
                     </Menu>
                   </div>
-                  {routes.map((route, index) => (
+                  {routes.map((route, index) =>
                     <Route
                       key={index}
                       path={route.path}
                       exact={route.exact}
                       component={route.main}
                     />
-                  ))}
+                  )}
                 </Sidebar.Pusher>
               </Sidebar.Pushable>
             </Grid.Column>

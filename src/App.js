@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Sidebar from './components/sidebar';
+import routes from './routes';
 import Login from './Login'
-import Home from './Home'
-import Sidebar from './components/sidebar'
-
 
 
 class App extends Component {
@@ -11,8 +10,15 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" component={Login} />
-          <Route exact path="/home" component={Sidebar} />
+          {routes.map((route, index) =>
+            <Route
+              key={index}
+              exact={route.exact}
+              path={route.path}
+              component={Sidebar}
+            />
+          )}
+          <Route path="/login" component={Login} />
         </div>
       </Router>
     );

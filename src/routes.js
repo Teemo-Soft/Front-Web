@@ -1,16 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Home from './Home'
 import Ejemplo from './Ejemplo'
 
 const routes = [
     {
-        path: "/home",
-        main: () => <Home />
+        path: "/",
+        name: "home",
+        exact: true,
+        main: () => <Home />,
+        icon: "home"
     },
     {
         path: "/ejemplo",
-        main: () => <Ejemplo />
-    }
+        name: "ejemplo",
+        main: () => <Ejemplo />,
+        icon: "gamepad"
+    },
 ];
 
 

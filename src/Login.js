@@ -4,11 +4,9 @@ import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login';
 import logo from './assets/img/logo.png';
 import './Login.css'
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
 
-//components
-import Sidebar from './components/sidebar'
+
+
 
 class Login extends Component {
 

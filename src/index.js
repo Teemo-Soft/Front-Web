@@ -16,12 +16,12 @@ const client = new ApolloClient({
 });
 
 
-const _App = () => (
+const AppContainer = () => (
   <ApolloProvider client={client}>
     <App />
   </ApolloProvider>
 )
-ReactDOM.render(<_App />, document.getElementById('root'));
+ReactDOM.render(<AppContainer />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
